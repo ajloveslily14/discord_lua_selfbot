@@ -80,7 +80,7 @@ function delEmote(m,trigger) -- Remove emoji from storage file.
 end
 
 
-addCommand("set",true,function(m,args) -- Command to add custom emoji.
+addCommand("set",function(m,args) -- Command to add custom emoji.
 
 	if #args < 2 then
 		m:setContent("I need 2 args man")
@@ -95,7 +95,7 @@ addCommand("set",true,function(m,args) -- Command to add custom emoji.
 
 end)
 
-addCommand("remove",true,function(m,args) -- Command to remove custom emoji.
+addCommand("remove",function(m,args) -- Command to remove custom emoji.
 	
 	if args[1] ~= "" then
 		delEmote(m,args[1])

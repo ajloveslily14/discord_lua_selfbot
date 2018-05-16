@@ -1,6 +1,6 @@
 require("util")
 
-addCommand("emote",true,function(m,args)
+addCommand("emote",function(m,args)
 
 	local emote = emoteFromString(args[1])
 	emote = client:getEmoji(emote)
@@ -11,8 +11,8 @@ addCommand("emote",true,function(m,args)
 		rep:addImage()
 		rep:setImage(emote.url)
 		rep:setColor(emote.guild:getMember(client.user):getColor())
-		m:setContent(nil)
-		m:setEmbed(rep)
+		m:delete()
+		m:reply({embed = rep})
 	else
 		m:setContent("Couldn't find that emote?")
 		timer.sleep(3000)

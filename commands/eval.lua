@@ -1,6 +1,6 @@
 require("util")
 
-addCommand("eval",true,function(m,args) -- Command to run lua.
+addCommand("eval",function(m,args) -- Command to run lua.
 	
 	local code = ""
 	if #args >= 2 then -- Because code can have commas in it, add all the arguments into one string to be ran.

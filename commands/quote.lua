@@ -1,6 +1,6 @@
 require("util")
 
-addCommand("quote",true,function(m,args) -- Command to quote posts
+addCommand("quote",function(m,args) -- Command to quote posts
 
 	if (#args >=1) then -- If we have arguments
 

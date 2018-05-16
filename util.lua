@@ -21,6 +21,10 @@ function getMessage(chan,id)
 	return out
 end
 
+function emoteFromString(str)
+	return string.match(str,"%d+")
+end
+
 -- Helper function to see if a file attachment is an image.
 function isImg(str)
 	if str:find(".jpg") then return true end

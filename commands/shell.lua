@@ -1,6 +1,6 @@
 require("util")
 
-addCommand("shell",true,function(m,args) -- Passthrough to bash/cmd
+addCommand("shell",function(m,args) -- Passthrough to bash/cmd
 
 	local code = "" -- Because commands may include commas, concatenate all arguments into one string.
 	if #args > 2 then

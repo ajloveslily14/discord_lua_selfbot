@@ -40,5 +40,5 @@ function refreshFile(m,args) -- Command to refresh other commands.
 end
 
 
-addCommand("reload",true,refreshFile)
-addCommand("refresh",true,refreshFile)
+addCommand("reload",refreshFile)
+addCommand("refresh",refreshFile)

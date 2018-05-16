@@ -1,5 +1,5 @@
 require("util")
-addCommand("avatar",true,function(m,args) -- Command to retrieve the avatar of a user.
+addCommand("avatar",function(m,args) -- Command to retrieve the avatar of a user.
 
 	local url = userFromMention(args[1]) -- Get user object from mention
 	if url then

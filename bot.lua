@@ -36,22 +36,17 @@ end
 
 -- Our main add command function formatting:
 -- addCommand(string: command name, boolean: takes arguments, function: callback (the actual command code))
-function _G.addCommand(name,args,func)
+function _G.addCommand(name,func)
 	
 -- A temporary function that parses what kind of command we're giving it.
-	local temp = function(m,args,func) 
-		if args then -- If the command takes arguments create a table of them
-			local arglist = string.sub(m.content,#prefix+#name+2):split(",") -- Split up arguments into a table
-			func(m,arglist) -- Execute the callback with arguments.
-			return true
-		else 
-			func(m) -- Execute the callback.
-			return true
-		end	
+	local temp = function(m,func) 
+		local arglist = string.sub(m.content,#prefix+#name+2):split(",") -- Split up arguments into a table
+		func(m,arglist) -- Execute the callback with arguments.
+		return true
 	end
 
-	commands[name] = function(m) temp(m,args,func) end -- Insert our command into the global commands table as a function that calls the internal function
-	print(string.format("Loaded command %s, has arguments: %s",name,args))
+	commands[name] = function(m) temp(m,func) end -- Insert our command into the global commands table as a function that calls the internal function
+	print(string.format("Loaded command %s.",name))
 end
 
 -- This function will be the actual function called by the event

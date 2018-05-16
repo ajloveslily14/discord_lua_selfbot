@@ -35,5 +35,5 @@ function cleanUp(m,args) -- Command to remove messages in bulk.
 	end
 end
 
-addCommand("clean",true,cleanUp)
-addCommand("clear",true,cleanUp)
+addCommand("clean",cleanUp)
+addCommand("clear",cleanUp)

@@ -18,4 +18,5 @@ addCommand("emote",function(m,args)
 		timer.sleep(3000)
 		m:delete()
 	end
+	
 end)

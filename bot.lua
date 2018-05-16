@@ -58,7 +58,7 @@ end
 function callCommand(m)
 	if isAuthorized(m.author) and string.sub(m.content,1,#prefix) == prefix then -- If we're allowed to run a command, and if we typed the prefix
 		local ending = string.find(m.content, " ")
-		ending = ending and ending-1 or -1 
+		if ending then ending = ending - 1 end
 		local command = string.sub(m.content, #prefix+1, ending) -- Grab the word after the prefix
 		if commands[command] then -- If the command is valid, execute it.
 			commands[command](m) 

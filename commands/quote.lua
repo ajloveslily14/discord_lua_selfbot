@@ -35,7 +35,15 @@ addCommand("quote",function(m,args) -- Command to quote posts
 				end
 				m:reply({embed = rep,content = rep.content}) -- Post the embedded reply.
 				m:delete() -- Delete the invoking message.
+			else
+				m:setContent("Couldn't find that message")
+				timer.sleep(3000)
+				m:delete()
 			end
+		else
+			m:setContent("Couldn't find that message")
+			timer.sleep(3000)
+			m:delete()
 		end
 		
 	end

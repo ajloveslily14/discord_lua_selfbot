@@ -7,7 +7,7 @@ local function parseReply(msg,comment)
 	local member = msg.guild:getMember(msg.author.id)
 	local rep = newEmbed() -- Build embed reply
 	rep:addAuthor()
-	rep:setAuthor(msg.author.fullname)
+	rep:setAuthor(msg.author.tag)
 	rep:setAuthorImage(msg.author:getAvatarURL())
 	rep:setColor(member:getColor())
 	rep:setDescription(msg.content)

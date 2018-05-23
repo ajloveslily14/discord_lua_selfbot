@@ -9,7 +9,7 @@
 _G.fs = require('fs')
 _G.timer = require('timer')
 _G.discordia = require('discordia')
-_G.client = discordia.Client({logLevel = 1})
+_G.client = discordia.Client({cacheAllMembers = true})
 _G.prefix = "./"
 discordia.extensions.string()
 local botmode = false --  If you want to not have it running on your client set this to true

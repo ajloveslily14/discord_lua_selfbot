@@ -4,12 +4,17 @@ require("util")
 
 
 local function parseReply(msg,comment)
-	local member = msg.guild:getMember(msg.author.id)
+	local member
+	if msg.guild then
+		member = msg.guild:getMember(msg.author.id)
+	else
+		member = nil
+	end
 	local rep = newEmbed() -- Build embed reply
 	rep:addAuthor()
 	rep:setAuthor(msg.author.tag)
 	rep:setAuthorImage(msg.author:getAvatarURL())
-	rep:setColor(member:getColor())
+	rep:setColor(member and member:getColor() or Color(math.random(255),math.random(255),math.random(255)))
 	rep:setDescription(msg.content)
 	if msg.attachment and isImg(msg.attachment['filename']) then -- If the message was an image, add it to the embed.
 		rep:addImage()

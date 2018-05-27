@@ -7,5 +7,5 @@ addCommand("blocks",function(m,args)
 		rep = rep..","..args[i]
 	end
 
-	m:setContent(string.gsub(rep,"%a",":regional_indicator_%1:"):lower())
+	m:setContent(string.gsub(rep,"%a",":regional_indicator_%1:\226\128\139"):lower())
 end)

@@ -8,5 +8,5 @@ addCommand("lul",function(m,args)
 		rep = rep..","..args[i]
 	end
 
-	m:setContent(string.gsub(rep,"o","<:omegalul:450179262876614657>"))
+	m:setContent(string.gsub(rep,"[oO]","<:omegalul:450179262876614657>"))
 end)

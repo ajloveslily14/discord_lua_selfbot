@@ -22,7 +22,8 @@ function getMessage(chan,id)
 end
 
 function emoteFromString(str)
-	return string.match(str,"%d+")
+	local _,id = string.match(str,":(.*):(.*[^>])")
+	return id
 end
 
 -- Helper function to see if a file attachment is an image.

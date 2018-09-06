@@ -13,7 +13,13 @@ addCommand("eval",function(m,args) -- Command to run lua.
 	end
 	local env = setmetatable({},{__index = _G}) -- Setup environment for code to be ran in
 	env.m = m -- Add invoking message to environment
-	env.send = function(text) m:reply(tostring(text)) end -- Helper function to print text to channel
+	env.send = function(...) -- Helper function to print text to channel
+		local t = {}
+		for k,v in pairs({...}) do
+			table.insert(t,tostring(v))
+		end
+		m:reply(table.concat(t,"\t"))
+	end 
 	local fn,err = load(code,"Eval","t",env) -- Check for syntax errors.
 	if not fn then
 		m:setContent("There was an error: ```lua\n"..err.."```")

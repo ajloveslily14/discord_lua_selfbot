@@ -32,6 +32,8 @@ function refreshFile(m,args) -- Command to refresh other commands.
 				end
 		else
 			m:setContent("Couldn't find "..todo)
+			timer.sleep(5000)
+			m:delete()
 		end
 	else
 		m:setContent("I need args!")

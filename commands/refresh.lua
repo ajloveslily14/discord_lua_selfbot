@@ -10,6 +10,7 @@ function refreshFile(m,args) -- Command to refresh other commands.
 				reload = v 
 			end
 		end
+		f:close()
 		if reload then -- If the command we are trying to refresh is valid, reload the file.
 			local f,e = loadfile("commands/"..reload) -- Check for syntax errors
 				if not f then

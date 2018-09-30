@@ -11,7 +11,7 @@ function refreshHandle() -- Add/refresh handle testing when a message with an em
 		local _,count = string.gsub(message.content,":",":") 
 		if count >= 2 and message.author == client.user then -- If there are at least two colons in the message
 			local rep = {}
-			for i in string.gmatch(message.content,":[^:]*:") do -- Separate emojis(s) from surrounding colons.
+			for i in string.gmatch(message.content,"(:[%a%d_]+:)") do -- Separate emojis(s) from surrounding colons.
 				i = string.gsub(i,":","")
 				table.insert(rep,i)
 			end

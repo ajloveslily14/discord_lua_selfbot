@@ -1,5 +1,6 @@
 require("util")
 
+
 replace = {}
 
 -- System to add custom "emojis" or macros
@@ -29,44 +30,53 @@ function refreshHandle() -- Add/refresh handle testing when a message with an em
 end
 local emotes
 emoteHandle = nil
+function updateToJSON()
+	local t = io.open("emoji.json","r")
+	if t ~= nil then return t:close() end
+	local f = io.open("emoji.json","w")
+	f:write(json.encode(replace))
+	f:close()
+end
 function updateEmotes() -- Refresh replace table.
-	local f = fs.readFileSync("customemotes.txt","r")
-	emotes = f
-	replace = {}
-	for k,v in pairs(emotes:split("\002")) do -- Separate replacements.
-		local temp = {}
-		for emote in string.gmatch(v,"[^\001]+") do -- Separate string and replacement.
-			table.insert(temp,emote)
+	local t = io.open("emoji.json","r")
+	if not t then
+		local f = fs.readFileSync("customemotes.txt","r")
+		emotes = f
+		replace = {}
+		for k,v in pairs(emotes:split("\002")) do -- Separate replacements.
+			local temp = {}
+			for emote in string.gmatch(v,"[^\001]+") do -- Separate string and replacement.
+				table.insert(temp,emote)
+			end
+			temp[1] = string.gsub(temp[1],"\\n","\n") -- Replace escaped return line with actual return line.
+			temp[2] = string.gsub(temp[2],"\\n","\n")
+			replace[temp[1]] = temp[2]
 		end
-		temp[1] = string.gsub(temp[1],"\\n","\n") -- Replace escaped return line with actual return line.
-		temp[2] = string.gsub(temp[2],"\\n","\n")
-		replace[temp[1]] = temp[2]
+		emoteHandle = refreshHandle() -- Refresh handle to use new replacement table.
+		updateToJSON()
+		os.remove("customemotes.txt")
+	else
+		t:close()
+		local f = fs.readFileSync("emoji.json","r")
+		replace = json.decode(f)
+		emoteHandle = refreshHandle() 
 	end
-	emoteHandle = refreshHandle() -- Refresh handle to use new replacement table.
+
 end
 updateEmotes() -- Initial load of emojis.
 
 function addEmote(trigger,replacement) -- Adds an emoji to the storage file, format `trigger\001replacement\002trigger\001replacement`
-	local st = emotes
-	trigger = string.gsub(trigger,"\n","\\n") -- Replace return lines with escaped version.
-	replacement = string.gsub(replacement,"\n","\\n")
-	st = st.."\002"..trigger.."\001"..replacement
-	fs.writeFileSync("customemotes.txt",st) -- Write to storage file.
+	replace[trigger] = replacement
+	fs.writeFileSync("emoji.json",json.encode(replace)) -- Write to storage file.
 	client:removeListener("messageCreate",emoteHandle) -- Refresh handle.
 	updateEmotes()
 end
 
 function delEmote(m,trigger) -- Remove emoji from storage file.
-	local rem
-	for k,v in pairs(replace) do
-		if k == trigger then
-			rem = "\002"..k.."\001"..v -- Pick out emoji to be removed
-		end
-	end
+	local rem = replace[trigger]
 	if rem then
-		local st = emotes
-		st = string.gsub(st,rem,"")
-		fs.writeFileSync("customemotes.txt",st)
+		replace[trigger] = nil
+		fs.writeFileSync("emoji.json",json.encode(replace)) 
 		client:removeListener("messageCreate",emoteHandle) -- Refresh handle.
 		updateEmotes()
 		m:setContent("Removed emote '"..trigger.."'")

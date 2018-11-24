@@ -1,9 +1,3 @@
---[[	
-
-	TODO: emoji when 2.4
-
-]]-- 
-
 -- Setup variables.
 -- With Luvit you have to define them as _G.x to have them actually be in the global scope
 _G.fs = require('fs')

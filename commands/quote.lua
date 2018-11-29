@@ -41,10 +41,13 @@ addCommand("quote",function(m,args) -- Command to quote posts
 	if (#args >=1) then -- If we have arguments
 
 		local msg = args[1]
-		local comment = args[2]
-		if tonumber(msg) then 
+		if tonumber(msg) then
 			msg = getMessage(m.channel,msg) -- Make sure that it's an actual message ID posted
 			if msg then
+				local comment = args[2]
+				for i = 3,#args do
+					comment = comment..","..args[i]
+				end
 				local rep = parseReply(msg,comment)
 				m:reply({embed = rep,content = rep.content}) -- Post the embedded reply.
 				m:delete() -- Delete the invoking message.

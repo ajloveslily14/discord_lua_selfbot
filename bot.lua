@@ -4,7 +4,7 @@ _G.fs = require('fs')
 _G.timer = require('timer')
 _G.discordia = require('discordia')
 _G.json = require('json')
-_G.client = discordia.Client({cacheAllMembers = true})
+_G.client = discordia.Client({cacheAllMembers = true,syncGuilds = true})
 _G.prefix = "./"
 discordia.extensions.string()
 

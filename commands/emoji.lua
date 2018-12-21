@@ -97,8 +97,13 @@ addCommand("set",function(m,args) -- Command to add custom emoji.
 		timer.sleep(3000)
 		m:delete()
 	else
-		addEmote(args[1],args[2])
-		m:setContent("Added emote :"..args[1]..": -> "..args[2])
+		local emote = args[2]
+		for i = 3,#args do 
+			emote = emote..","..args[i] -- Concatenate all arguments.
+		end
+
+		addEmote(args[1],emote)
+		m:setContent("Added emote :"..args[1]..": -> "..emote)
 		timer.sleep(3000)
 		m:delete()
 	end

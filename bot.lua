@@ -4,7 +4,7 @@ _G.fs = require('fs')
 _G.timer = require('timer')
 _G.discordia = require('discordia')
 _G.json = require('json')
-_G.client = discordia.Client({syncGuilds = true})
+_G.client = discordia.Client({cacheAllMembers = true})
 _G.prefix = "./"
 discordia.extensions.string()
 
@@ -31,7 +31,7 @@ function isAuthorized(author)
 end
 
 -- Our main add command function formatting:
--- addCommand(string: command name, boolean: takes arguments, function: callback (the actual command code))
+-- addCommand(string: command name, function: callback (the actual command code))
 function _G.addCommand(name,func)
 	
 -- A temporary function that parses what kind of command we're giving it.

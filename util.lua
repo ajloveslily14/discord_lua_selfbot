@@ -28,6 +28,7 @@ end
 
 -- Helper function to see if a file attachment is an image.
 function isImg(str)
+	str = string.lower(str)
 	if str:find(".jpg") then return true end
 	if str:find(".jpeg") then return true end
 	if str:find(".png") then return true end

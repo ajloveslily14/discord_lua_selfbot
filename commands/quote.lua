@@ -49,8 +49,8 @@ addCommand("quote",function(m,args) -- Command to quote posts
 					comment = comment..","..args[i]
 				end
 				local rep = parseReply(msg,comment)
-				m:reply({embed = rep,content = rep.content}) -- Post the embedded reply.
-				m:delete() -- Delete the invoking message.
+				m:setContent(rep.content) -- Set the invoking message to the quote comment.
+				m:setEmbed(rep) -- Set the invoking messages embed to the quote.
 			else
 				m:setContent("Couldn't find that message")
 				timer.sleep(3000)

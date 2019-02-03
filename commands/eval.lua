@@ -2,15 +2,7 @@ require("util")
 
 addCommand("eval",function(m,args) -- Command to run lua.
 	
-	local code = ""
-	if #args >= 2 then -- Because code can have commas in it, add all the arguments into one string to be ran.
-		code = args[1]
-		for i = 2,#args do
-			code = code..","..args[i]
-		end
-	else
-		code = args[1]
-	end
+	local code = table.concat(args,",")
 	local env = setmetatable({},{__index = _G}) -- Setup environment for code to be ran in
 	env.m = m -- Add invoking message to environment
 	env.send = function(...) -- Helper function to print text to channel
@@ -20,6 +12,7 @@ addCommand("eval",function(m,args) -- Command to run lua.
 		end
 		m:reply(table.concat(t,"\t"))
 	end 
+	env.args = args
 	local fn,err = load(code,"Eval","t",env) -- Check for syntax errors.
 	if not fn then
 		m:setContent("There was an error: ```lua\n"..err.."```")

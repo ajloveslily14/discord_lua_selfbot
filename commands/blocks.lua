@@ -1,11 +1,9 @@
 require("util")
 
 addCommand("blocks",function(m,args)
-	local rep = ""
-	rep = rep..args[1]
-	for i = 2,#args do
-		rep = rep..","..args[i]
-	end
+	if args[1] == "" then return end
+	
+	local rep = table.concat(args,","_)
 
 	m:setContent(string.gsub(rep,"%a",":regional_indicator_%1:\226\128\139"):lower())
 end)

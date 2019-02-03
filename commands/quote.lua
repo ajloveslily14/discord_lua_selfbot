@@ -38,7 +38,7 @@ end
 
 addCommand("quote",function(m,args) -- Command to quote posts
 
-	if (#args >=1) then -- If we have arguments
+	if #args >= 1 then -- If we have arguments
 
 		local msg = args[1]
 		if tonumber(msg) then

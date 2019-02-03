@@ -1,16 +1,9 @@
 require("util")
 
 addCommand("shell",function(m,args) -- Passthrough to bash/cmd
+	if args[1] == "" then return end
 
-	local code = "" -- Because commands may include commas, concatenate all arguments into one string.
-	if #args > 2 then
-		code = args[1]
-		for i = 2,#args do
-			code = code..","..args[i]
-		end
-	else
-		code = args[1]
-	end
+	local code = table.concat(args,",") -- Because commands may include commas, concatenate all arguments into one string.
 
 	local shell = io.popen(code)
 	local out = shell:read("*a")

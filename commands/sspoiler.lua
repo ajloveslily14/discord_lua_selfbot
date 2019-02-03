@@ -2,7 +2,7 @@ require('util')
 
 
 local function sspoil(m,args)
-	if #args < 1 then return end
+	if args[1] == "" then return end
 
 	local rep = table.concat(args,",")
 

@@ -121,3 +121,12 @@ addCommand("remove",function(m,args) -- Command to remove custom emoji.
 	end
 
 end)
+
+
+addCommand("list",function(m)
+	local ret = "```"
+	for trigger,replacement in pairs(replace) do
+		ret = ret.."\n"..trigger.." -> "..replacement
+	end
+	m:setContent(ret.."```")
+end)

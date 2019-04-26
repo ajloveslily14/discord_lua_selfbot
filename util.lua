@@ -100,7 +100,8 @@ embed = {
 
 }
 
+embed.__index = embed
+
 function newEmbed()
 	return setmetatable( {}, embed )
 end
-

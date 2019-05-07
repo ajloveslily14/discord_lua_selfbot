@@ -7,8 +7,12 @@ addCommand("eval",function(m,args) -- Command to run lua.
 	env.m = m -- Add invoking message to environment
 	env.send = function(...) -- Helper function to print text to channel
 		local t = {}
-		for k,v in pairs({...}) do
-			table.insert(t,tostring(v))
+		if #{...} == 0 then 
+			t = {"nil"}
+		else
+			for k,v in pairs({...}) do
+				table.insert(t,tostring(v))
+			end
 		end
 		m:reply(table.concat(t,"\t"))
 	end 

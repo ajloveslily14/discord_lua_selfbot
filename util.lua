@@ -1,8 +1,3 @@
--- Helper function for creating colors.
-function Color(r,g,b)
-	return discordia.Color.fromRGB(r,g,b)
-end
-
 -- Helper function to get a user object from a mention.
 function userFromMention(mention)
 	local id = string.match(mention,"[^<@>!]+")
@@ -57,7 +52,7 @@ embed = {
 	end,
 
 	setColor = function(self,color)
-		self.color = color.value
+		self.color = color
 	end,
 
 	addImage = function(self)

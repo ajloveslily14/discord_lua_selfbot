@@ -10,7 +10,7 @@ addCommand("emote",function(m,args)
 		rep:setDescription(desc)
 		rep:addImage()
 		rep:setImage(emote.url)
-		rep:setColor(emote.guild:getMember(client.user):getColor())
+		rep:setColor(emote.guild:getMember(client.user):getColor().value)
 		m:delete()
 		m:reply({embed = rep})
 	else

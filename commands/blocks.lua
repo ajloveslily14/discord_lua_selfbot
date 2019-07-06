@@ -5,5 +5,5 @@ addCommand("blocks",function(m,args)
 	
 	local rep = table.concat(args,",")
 
-	m:setContent(string.gsub(rep,"%a",":regional_indicator_%1:\226\128\139"):lower())
+	m:setContent(string.gsub(rep,"%a",":regional_indicator_%1: "):lower())
 end)

@@ -1,9 +1,9 @@
 -- Setup variables.
 -- With Luvit you have to define them as _G.x to have them actually be in the global scope
-_G.fs = require('fs')
-_G.timer = require('timer')
-_G.discordia = require('discordia')
-_G.json = require('json')
+_G.fs = require("fs")
+_G.timer = require("timer")
+_G.discordia = require("discordia")
+_G.json = require("json")
 _G.client = discordia.Client()
 _G.prefix = "./"
 discordia.extensions.string()
@@ -69,7 +69,7 @@ for command in f:lines() do
 		setfenv(f,_G)
 		local func,err = pcall(f) -- Run the code and check for runtime errors
 		if not func then
-			print('error! '..err)
+			print("error! "..err)
 		end
 	end
 end
@@ -77,6 +77,6 @@ end
 
 client:run(getKey(),{afk=true}) -- We use afk=true because it would block mobile push notifications otherwise
 
-client:once('ready', function() -- We're logged in, good to go!!
-	print('Logged in as '.. client.user.username)
+client:once("ready", function() -- We"re logged in, good to go!!
+	print("Logged in as ".. client.user.username)
 end)

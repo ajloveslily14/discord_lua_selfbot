@@ -1,4 +1,4 @@
-require('util')
+require("util")
 
 
 local function sspoil(m,args)
@@ -12,5 +12,5 @@ local function sspoil(m,args)
 	m:setContent(rep)
 end
 
-addCommand('sspoiler',sspoil)
-addCommand('sspoil',sspoil)
+addCommand("sspoiler",sspoil)
+addCommand("sspoil",sspoil)

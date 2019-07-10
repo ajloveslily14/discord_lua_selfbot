@@ -16,9 +16,9 @@ local function parseReply(msg,comment)
 	rep:setAuthorImage(msg.author:getAvatarURL())
 	rep:setColor(member and member:getColor().value or math.random(0xFFFFFF))
 	rep:setDescription(msg.content)
-	if msg.attachment and isImg(msg.attachment['filename']) then -- If the message was an image, add it to the embed.
+	if msg.attachment and isImg(msg.attachment["filename"]) then -- If the message was an image, add it to the embed.
 		rep:addImage()
-		rep:setImage(msg.attachment['url'])
+		rep:setImage(msg.attachment["url"])
 	end
 	rep:addFooter()
 	if msg.editedTimestamp then -- If the message was edited, show what time it was edited, else just show sent time.

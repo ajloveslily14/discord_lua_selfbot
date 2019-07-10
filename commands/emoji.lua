@@ -8,7 +8,7 @@ replace = {}
 -- when :foo: is posted, it gets edited to be bar.
 
 function refreshHandle() -- Add/refresh handle testing when a message with an emoji is posted.
-	return client:on('messageCreate',function(message)
+	return client:on("messageCreate",function(message)
 		local _,count = string.gsub(message.content,":",":") 
 		if count >= 2 and message.author == client.user then -- If there are at least two colons in the message
 			local rep = {}

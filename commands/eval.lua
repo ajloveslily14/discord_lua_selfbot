@@ -5,17 +5,17 @@ addCommand("eval",function(m,args) -- Command to run lua.
 	local code = table.concat(args,",")
 	local env = setmetatable({},{__index = _G}) -- Setup environment for code to be ran in
 	env.m = m -- Add invoking message to environment
-	env.send = function(...) -- Helper function to print text to channel
+	env.send = function(...)
 		local t = {}
-		if #{...} == 0 then 
+		if select("#",...) == 0 then 
 			t = {"nil"}
 		else
-			for k,v in pairs({...}) do
-				table.insert(t,tostring(v))
+			for i = 1,select("#",...) do
+				table.insert(t,tostring(select(i,...)))
 			end
 		end
 		m:reply(table.concat(t,"\t"))
-	end 
+	end
 	env.args = args
 	local fn,err = load(code,"Eval","t",env) -- Check for syntax errors.
 	if not fn then

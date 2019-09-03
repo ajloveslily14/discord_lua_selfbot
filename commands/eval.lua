@@ -7,12 +7,8 @@ addCommand("eval",function(m,args) -- Command to run lua.
 	env.m = m -- Add invoking message to environment
 	env.send = function(...)
 		local t = {}
-		if select("#",...) == 0 then 
-			t = {"nil"}
-		else
-			for i = 1,select("#",...) do
-				table.insert(t,tostring(select(i,...)))
-			end
+		for i = 1,select("#",...) do
+			table.insert(t,tostring(select(i,...)))
 		end
 		m:reply(table.concat(t,"\t"))
 	end
@@ -31,5 +27,4 @@ addCommand("eval",function(m,args) -- Command to run lua.
 		timer.sleep(5000)
 		m:delete()
 	end
-
 end)

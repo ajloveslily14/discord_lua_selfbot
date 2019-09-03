@@ -20,15 +20,17 @@
 
 |Name   |Description    |Alias  |Syntax |
 |-------|:-------------:|-------|-------|
-|Avatar |Returns a users avatar                           |None  |`avatar <user mention>`              |
-|Clean  |Removes messages in bulk, defaults to 100        |Clear |`clean (number)`                     |
-|Eval   |Runs lua                                         |None  |`eval <luacode>`                     |
-|Emote	|Shows emote info						          |None  |`emote <emote>`					   |
-|Ping   |Pong!                                            |None  |`ping`                               |
-|Refresh|Reloads a command file                           |Reload|`reload <filename without extension` |
-|Remove |Removes a custom emoji                           |None  |`remove <emoji trigger>`             |
-|Set    |Sets a custom emoji                              |None  |`set <trigger,replacement>`          |
-|Shell	|Runs a command in cmd on windows or bash on linux|None  |`shell <command>`                    |
+|Avatar |Returns a users avatar                               |None  |`avatar <user mention>`               |
+|Blocks |Replaces text with it's regional indicator equivalent|None  |`blocks <test>`                       |
+|Clean  |Removes messages in bulk, defaults to 100            |Clear |`clean (number)`                      |
+|Emote	|Shows emote info						              |None  |`emote <emote>`					    |
+|Eval   |Runs lua                                             |None  |`eval <luacode>`                      |
+|Ping   |Pong!                                                |None  |`ping`                                |
+|Refresh|Reloads a command file                               |Reload|`reload <filename without extension>` |
+|Remove |Removes a custom emoji                               |None  |`remove <emoji trigger>`              |
+|Set    |Sets a custom emoji                                  |None  |`set <trigger,replacement>`           |
+|Shell	|Runs a command in cmd on windows or bash on linux    |None  |`shell <command>`                     |
+|Sspoiler|Puts spoiler tags between each character            |sspoil|`sspoiler <text>`                     |
 
 
 

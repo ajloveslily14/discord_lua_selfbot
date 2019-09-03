@@ -1,4 +1,4 @@
-# Discord selfbot build with Lua and discordia.
+# Discord selfbot built with Lua and discordia.
 
 ## Installation
 

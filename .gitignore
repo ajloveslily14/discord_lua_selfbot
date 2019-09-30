@@ -5,7 +5,6 @@ botkey.txt
 gateway.json
 customemotes.txt
 emoji.json
-*.log
 *.old
 *.sh
 deps

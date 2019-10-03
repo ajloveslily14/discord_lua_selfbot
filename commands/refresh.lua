@@ -11,7 +11,7 @@ local function isCommand(str) -- Check to make sure the command exists
 			return str
 		end
 	end
-	return false
+	return
 end
 
 

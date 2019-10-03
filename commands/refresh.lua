@@ -2,16 +2,13 @@ require("util")
 
 
 local function isCommand(str) -- Check to make sure the command exists
-	local name = ""
-	if str:sub(-4) == ".lua" then -- If we added a lua extension keep it, else just add one.
-		name = str
-	else
-		name = str..".lua"
+	if str:sub(-4) ~= ".lua" then -- If we added a lua extension keep it, else just add one.
+		str = str..".lua"
 	end
 	local f = io.popen("ls commands","r") -- Get a list of files in commands/
 	for line in f:lines() do
-		if line == name then
-			return name
+		if line == str then
+			return str
 		end
 	end
 	return false

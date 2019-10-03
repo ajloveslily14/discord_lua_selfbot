@@ -1,17 +1,11 @@
 require("util")
 
 
-local function isCommand(str) -- Check to make sure the command exists
-	if str:sub(-4) ~= ".lua" then -- If we added a lua extension keep it, else just add one.
-		str = str..".lua"
-	end
-	local f = io.popen("ls commands","r") -- Get a list of files in commands/
-	for line in f:lines() do
-		if line == str then
-			return str
-		end
-	end
-	return
+local function getCommandFile(cmd) -- Fetch the name of the file that handles the given command (function by Pegasus_Epsilon)
+	local p = io.popen("grep 'addCommand' commands/* | grep '\""..cmd.."\"' | head -n 1 | cut -d: -f1")
+	cmd = p:read("*a"):trim()
+	p:close()
+    return cmd
 end
 
 
@@ -22,7 +16,7 @@ function refreshFile(m,args)
 		m:delete()
 		return
 	end
-	local file = isCommand(args[1]) -- Check if the input is actually a file.
+	local file = getCommandFile(args[1]) -- Check if the input is actually a file.
 	if not file then
 		m:setContent("Can't find that file")
 		timer.sleep(5000)
@@ -30,7 +24,7 @@ function refreshFile(m,args)
 		return
 	end
 
-	local func,err = loadfile("commands/"..file) -- Load the file and check for syntax errors
+	local func,err = loadfile(file) -- Load the file and check for syntax errors
 	if not func then
 		m:setContent("Syntax error while loading "..file..": ```"..err.."```")
 		timer.sleep(5000)
@@ -46,6 +40,8 @@ function refreshFile(m,args)
 		return
 	end
 	m:setContent("Reloaded "..file)
+	timer.sleep(3000)
+	m:delete()
 end
 
 addCommand("reload",refreshFile)

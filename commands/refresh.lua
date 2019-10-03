@@ -3,9 +3,9 @@ require("util")
 
 local function getCommandFile(cmd) -- Fetch the name of the file that handles the given command (function by Pegasus_Epsilon)
 	local p = io.popen("grep 'addCommand' commands/* | grep '\""..cmd.."\"' | head -n 1 | cut -d: -f1")
-	cmd = p:read("*a"):trim()
+	local file = p:read("*a"):trim()
 	p:close()
-    return cmd
+    return file ~= "" and file or nil
 end
 
 

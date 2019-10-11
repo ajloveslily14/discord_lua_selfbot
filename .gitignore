@@ -10,4 +10,4 @@ emoji.json
 deps
 commands/snipe.lua
 commands/debug.lua
-discordida.log
+discordia.log

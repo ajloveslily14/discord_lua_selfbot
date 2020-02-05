@@ -1,3 +1,8 @@
+## UPDATE
+
+I'm not really working on this much if at all anymore. My account got warned for using a selfbot(shocker) so I'm staying away from them.
+If there's any issues feel free to open an issue or make a pr and I'll fix them!
+
 # Discord selfbot built with Lua and discordia.
 
 ## Installation

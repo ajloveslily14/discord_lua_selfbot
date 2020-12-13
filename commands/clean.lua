@@ -12,8 +12,8 @@ function cleanUp(m,args) -- Command to remove messages in bulk.
 		end
 		table.sort(todie,function(a,b) return a.id > b.id end) --This will make it so we delete the latest messages first
 		m:setContent("removing "..#todie.." messages...")
-		for k,v in pairs(todie) do
-			v:delete()
+		for i = 1,#todie do
+			todie[i]:delete()
 		end
 		m:delete()
 	elseif tonumber(args[1]) then -- If arguments delete that amount.
@@ -26,8 +26,8 @@ function cleanUp(m,args) -- Command to remove messages in bulk.
 		end
 		m:setContent("removing "..#todie.." (out of "..#del..") messages...")
 		table.sort(todie,function(a,b) return a.id > b.id end) --This will make it so we delete the latest messages first
-		for k,v in pairs(todie) do
-			v:delete()
+		for i = 1,#todie do
+			todie[i]:delete()
 		end
 		m:delete()
 	else

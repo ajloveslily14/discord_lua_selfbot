@@ -126,7 +126,7 @@ end)
 addCommand("list",function(m)
 	local ret = "```"
 	for trigger,replacement in pairs(replace) do
-		ret = ret.."\n"..trigger.." -> "..replacement
+		ret = ret.."\n"..trigger.." -> "..replacement:sub(1,30).."..."
 	end
 	m:setContent(ret.."```")
 end)
